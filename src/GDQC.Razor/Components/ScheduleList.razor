@@ -1,0 +1,80 @@
+﻿@using Microsoft.JSInterop
+@inject IScheduleService service
+@inject IJSRuntime js
+
+<h1>Schedule</h1>
+
+<button @onclick="(() => ShowCurrent())">Show Current</button>
+<button @onclick="(() => ReLoad())">Reload</button>
+
+@if (sched == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Game</th>
+                <th>Category</th>
+                <th>Runner</th>
+                <th>Estimate</th>
+                @*<th>Setup</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in sched.Games)
+            {
+                var rowClass = "";
+                var id = "";
+                if (game.IsCurrent)
+                {
+                    rowClass = "table-success";
+                    id = "currentRun";
+                }
+                <tr class="@rowClass" id="@id">
+                    <td>@game.StartTime.ToLocalTime().ToString("dddd h:mm tt")</td>
+                    <td>@game.Game</td>
+                    <td>@game.Category</td>
+                    <td>@game.Runner</td>
+                    <td>@game.Estimate.ToString(@"h'h'\ mm'm'")</td>
+                    @*<td>@game.SetupLength</td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ScheduleView? sched;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Load();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await ShowCurrent();
+    }
+
+    protected async Task ReLoad()
+    {
+        await Load();
+        this.StateHasChanged();
+        await ShowCurrent();
+    }
+
+    protected async Task Load()
+    {
+        sched = null;
+        sched = await service.GetScheduleAsync();
+    }
+
+    protected async Task ShowCurrent()
+    {
+        await js.InvokeVoidAsync("findCurrent");
+    }
+}

@@ -1,0 +1,40 @@
+/*
+    This is a configuration file for the SwitchStartupProject Visual Studio Extension
+    See https://heptapod.host/thirteen/switchstartupproject/blob/branch/current/Configuration.md
+*/
+{
+  /*  Configuration File Version  */
+  "Version": 3,
+
+  /*  Create an item in the dropdown list for each project in the solution?  */
+  "ListAllProjects": false,
+
+  "MultiProjectConfigurations": {
+    "MAUI - Windows": {
+      "Projects": {
+        "GDQC": {
+          "ProfileName": "Windows Machine"
+        }
+      }
+    },
+    "MAUI - Pixel 4a": {
+      "Projects": {
+        "GDQC": {
+          "ProfileName": "Pixel 4a"
+        }
+      }
+    },
+    "MAUI - Pixel 5a - Emu": {
+      "Projects": {
+        "GDQC": {
+          "ProfileName": "Pixel 5a"
+        }
+      }
+    },
+    "Web": {
+      "Projects": {
+        "GDQC.Web.Server": {}
+      }
+    }
+  }
+}
