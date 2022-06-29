@@ -4,11 +4,31 @@
              xmlns:local="clr-namespace:GDQC"
              x:Class="GDQC.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
-
     <BlazorWebView HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
             <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
         </BlazorWebView.RootComponents>
+
     </BlazorWebView>
+    <!--<StackLayout Margin="20,35,20,25">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
+            </BlazorWebView.RootComponents>
+
+        </BlazorWebView>
+        <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            >
+            <TabBar>
+                <Tab Title="Cats" Icon="twitch.svg">
+                    --><!--<ShellContent ContentTemplate="{DataTemplate views:CatsPage}" />--><!--
+                </Tab>
+                <Tab Title="Watch" Icon="twitch.svg">
+                    --><!--<ShellContent ContentTemplate="{DataTemplate views:DogsPage}" />--><!--
+                </Tab>
+            </TabBar>
+        </Shell>
+    </StackLayout>-->
 
 </ContentPage>
